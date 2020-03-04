@@ -203,13 +203,13 @@
 				timeP2.push([prompt1, prompt2]);
 			}
 		} else {
-			alert("Cannot add");
+			alert("Không thể thêm.");
 		}
 		renderAll();
 	}
 
 	function clearTime(target) {
-		var conf = confirm("Are you sure to clear time?");
+		var conf = confirm("Bạn có muốn xóa hết không?");
 		if (conf == true && target == 1) {
 			timeP1 = [];
 		} else if (conf == true && target == 2) {
@@ -228,7 +228,7 @@
 				boundP2 = [prompt1, prompt2];
 			}
 		} else {
-			alert("Cannot edit!");
+			alert("Không thể chỉnh sửa!");
 		}
 		renderAll();
 	}
