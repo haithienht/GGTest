@@ -110,33 +110,38 @@
 
 		// Sắp xếp lại thời gian theo thứ tự
 		timeMins.sort();
-
-		for (var i = 0; i < timeMins.length; i++) {
-			var start = 0, end = 0;
-			// Trường hợp thời gian có thể họp đầu đến thời gian làm đầu tiên
-			if (i == 0) {
-				start = boundMin;
-				end = timeMins[i][0];
-				if (end - start > 0) {
-					result.push([toTime(start), toTime(end)]);
+		// Nếu không có thời gian làm việc thì thời gian rảnh sẽ là thời gian có thể họp
+		if (timeMins.length == 0) {
+			result = [bound];
+		} else {
+			for (var i = 0; i < timeMins.length; i++) {
+				var start = 0, end = 0;
+				// Trường hợp thời gian có thể họp đầu đến thời gian làm đầu tiên
+				if (i == 0) {
+					start = boundMin;
+					end = timeMins[i][0];
+					if (end - start > 0) {
+						result.push([toTime(start), toTime(end)]);
+					}
 				}
-			}
-			// Xử lý trường hợp thời gian làm cuối đến hết thời gian có thể họp
-			if (i == timeMins.length - 1) {
-				start = timeMins[i][1];
-				end = boundMax;
-				if (end - start > 0) {
-					result.push([toTime(start), toTime(end)]);
-				}
-			} else {
-				// Xử lý trường hợp hiện tại
-				start = timeMins[i][1];
-				end = timeMins[i + 1][0];
-				if (end - start > 0) {
-					result.push([toTime(start), toTime(end)]);
+				// Xử lý trường hợp thời gian làm cuối đến hết thời gian có thể họp
+				if (i == timeMins.length - 1) {
+					start = timeMins[i][1];
+					end = boundMax;
+					if (end - start > 0) {
+						result.push([toTime(start), toTime(end)]);
+					}
+				} else {
+					// Xử lý trường hợp hiện tại
+					start = timeMins[i][1];
+					end = timeMins[i + 1][0];
+					if (end - start > 0) {
+						result.push([toTime(start), toTime(end)]);
+					}
 				}
 			}
 		}
+
 		return result;
 	}
 
